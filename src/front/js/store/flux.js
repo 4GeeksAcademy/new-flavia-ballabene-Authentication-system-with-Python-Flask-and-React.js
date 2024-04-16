@@ -16,8 +16,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            email: dataEmail,
-                            password: dataPassword,
+                            "email": "dataEmail",
+                            "password": "dataPassword",
                         })
                     });
                     console.log(response);
@@ -25,8 +25,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                         const data = await response.json();
                         setStore({
                             user: {
-                                email: dataEmail,
-                                password: dataPassword,
+                                "email": "dataEmail",
+                                "password": "dataPassword",
                                 id: data.user.id
                             },
                             logged: true
@@ -59,8 +59,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                             "Access-Control-Allow-Methods": "*"
                         },
                         body: JSON.stringify({
-                            email: dataEmail,
-                            password: dataPassword
+                            "email": "dataEmail",
+                            "password": "dataPassword",
                         })
                     });
                     console.log(response);

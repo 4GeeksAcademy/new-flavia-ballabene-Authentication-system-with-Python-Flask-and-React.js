@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify, url_for, Blueprint, current_app
 from api.models import db, User
 from api.utils import APIException
@@ -6,9 +7,9 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
-CORS(api)
 
 api = Blueprint('api', __name__)
+CORS(api)
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -31,7 +32,7 @@ def signup():
     if verify_email:
         raise APIException("An account with this email already exists", 400)
 
-    user = User(email=request_body["email"], password=request_body["password"])
+    user = User(email=request_body["email"], password=request_body["password"], is_active=True)
 
     db.session.add(user)
 
