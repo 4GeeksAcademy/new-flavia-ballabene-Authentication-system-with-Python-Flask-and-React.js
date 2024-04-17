@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             message: null,
             token: null,
             user: null,
-            logged: false
+            logged: null
         },
         actions: {
             signup: async (dataEmail, dataPassword) => {
@@ -15,8 +15,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            "email": "dataEmail",
-                            "password": "dataPassword",
+                            "email": dataEmail,
+                            "password": dataPassword,
                         })
                     });
                     console.log(response);
@@ -47,8 +47,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            "email": "dataEmail",
-                            "password": "dataPassword",
+                            "email": dataEmail,
+                            "password": dataPassword,
                         })
                     });
                     console.log(response);
