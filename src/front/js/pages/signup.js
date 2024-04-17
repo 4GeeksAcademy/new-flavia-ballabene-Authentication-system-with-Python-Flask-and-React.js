@@ -1,23 +1,22 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../store/appContext';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const { store, actions } = useContext(Context);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
-    const handleSignup = () => {
-        actions
-            .signup(email, password)
-            .then((success) => {
-                if (!success) {
-                    setError('User already exist or is malformed. Please try again.');
-                }
-            })
-            .catch((error) => {
-                setError('An error occurred during user creation. Please try again.');
-            });
+    const handleSignup = async() => {
+       let result = await actions.signup(email, password)
+       if (result) {
+        navigate("/login")
+       }
+       else {
+        setError("Error occurred, while signing you up")
+       }
     };
 
     return (

@@ -9,10 +9,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         actions: {
             signup: async (dataEmail, dataPassword) => {
                 try {
-                    const response = await fetch("https://friendly-giggle-wr7vvpq9vrqr2gw9v-3001.app.github.dev/api/signup", {
+                    const response = await fetch(process.env.BACKEND_URL+"/api/signup", {
                         method: 'POST',
                         headers: {
-                            'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
@@ -23,15 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log(response);
                     if (response.ok) {
                         const data = await response.json();
-                        setStore({
-                            user: {
-                                "email": "dataEmail",
-                                "password": "dataPassword",
-                                id: data.user.id
-                            },
-                            logged: true
-                        });
-                        getActions().login(dataEmail, dataPassword);
+                        console.log(data);
                         return true;
                     } else {
                         // Check for specific error messages
@@ -53,10 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     const response = await fetch(process.env.BACKEND_URL + "/api/login", {
                         method: 'POST',
                         headers: {
-                            'Accept': 'application/json',
                             'Content-Type': 'application/json',
-                            "Access-Control-Allow-Origin": "*",
-                            "Access-Control-Allow-Methods": "*"
                         },
                         body: JSON.stringify({
                             "email": "dataEmail",

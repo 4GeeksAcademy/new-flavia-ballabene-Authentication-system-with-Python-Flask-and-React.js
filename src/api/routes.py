@@ -32,7 +32,7 @@ def signup():
     if verify_email:
         raise APIException("An account with this email already exists", 400)
 
-    user = User(email=request_body["email"], password=request_body["password"], is_active=True)
+    user = User(email=request_body["email"], password=request_body["password"],is_active=True)
 
     db.session.add(user)
 
